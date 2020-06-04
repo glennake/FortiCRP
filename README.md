@@ -14,10 +14,10 @@ Install dependancies using pip:
 
     pip3 install -r requirements.txt
 
-Put all the .zip archives containing license and support contract files from Fortinet in a directory (note: do not unzip them)
+Put all the .zip archives containing license and support contract files from Fortinet in a directory (note: do not unzip them).
 
 Run the parser, passing the above directory path:
 
     python3 forticrp.py --dir /path/to/directory
 
-A CSV file will be generated in the same folder that contains all the parsed registration codes.
+A CSV file will be generated in the same directory that contains all the parsed registration codes.
