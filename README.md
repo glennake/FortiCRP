@@ -4,7 +4,7 @@ Fortinet Contract Reader and Parser (FortiCRP) is a python script to extract reg
 
 ## Usage
 
-Make sure git is installed on your system.
+Make sure git, python3 and python3-pip are installed on your system.
 
 Clone the repo:
 
