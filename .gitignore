@@ -127,6 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+<<<<<<< HEAD
 
 # VS Code
 .vscode/
+=======
+>>>>>>> 58af676b74b36632d30c420fb75244dde90d8254
