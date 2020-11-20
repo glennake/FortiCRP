@@ -67,7 +67,8 @@ class forticrap:
 
             contract_sku = zip_file.split("_")[0]
 
-            self.parsed_licenses[contract_sku] = []
+            if contract_sku not in self.parsed_licenses:
+                self.parsed_licenses[contract_sku] = []
 
             zip_file_contents = ZipFile(self.license_dir + "/" + zip_file, "r")
 
