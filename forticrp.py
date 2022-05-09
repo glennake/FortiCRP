@@ -28,6 +28,7 @@ import csv
 from datetime import datetime
 import os
 from PyPDF2 import PdfFileReader
+from PyPDF2.utils import PdfReadError
 import re
 from zipfile import ZipFile
 
@@ -52,6 +53,7 @@ class forticrap:
         # Static variables
 
         self.parsed_licenses = {}
+        self.ignored_files_patterns = ["__MACOSX"]
 
         # Define regex patterns
 
@@ -72,11 +74,26 @@ class forticrap:
 
             zip_file_contents = ZipFile(self.license_dir + "/" + zip_file, "r")
 
-            for pdf_file in zip_file_contents.namelist():
+            zip_file_contents_namelist = zip_file_contents.namelist()
+
+            for ignored_pattern in self.ignored_files_patterns:
+                for i, file_name in enumerate(zip_file_contents_namelist):
+                    if ignored_pattern in file_name:
+                        zip_file_contents_namelist.pop(i)
+
+            for pdf_file in zip_file_contents_namelist:
 
                 pdf_raw = zip_file_contents.open(pdf_file, "r")
 
-                pdf_data = PdfFileReader(pdf_raw)
+                try:
+                    pdf_data = PdfFileReader(pdf_raw)
+                except PdfReadError:
+                    print(
+                        "Failed to read pdf file "
+                        + pdf_file
+                        + " in zip archive "
+                        + zip_file
+                    )
 
                 pdf_text = ""
 
